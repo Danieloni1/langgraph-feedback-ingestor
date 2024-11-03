@@ -1,5 +1,4 @@
 import logging
-import sys
 from dotenv import load_dotenv
 import os
 import pandas as pd
@@ -55,8 +54,8 @@ if __name__ == "__main__":
     if feedback_data is not None:
         logging.info("Feedback data loaded successfully.")
         analyzed_data = process_feedback_data(feedback_data)
-        evaluate(analyzed_data)
         save_to_html(analyzed_data)
+        evaluate(analyzed_data)
         logging.info("Analysis complete. Report generated: index.html")
     else:
         logging.error("Failed to load feedback data.")

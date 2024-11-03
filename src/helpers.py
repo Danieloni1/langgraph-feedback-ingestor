@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 from evaluation.metrics import calculate_metrics, rule_based_sentiment
 import json
@@ -19,10 +20,10 @@ def load_feedback_data(file_path):
         print("Error: CSV file not found.")
         return None
 
+# This is naïve! It misses cases like sarcasm and ambiguity... Need
 def evaluate(feedback_data):
-    feedback_data["sentiment"] = feedback_data["feedback_text"].apply(rule_based_sentiment)
-    
-    metrics = calculate_metrics(feedback_data["sentiment"], feedback_data["sentiment"])
+    sentiment = feedback_data["feedback_text"].copy().apply(rule_based_sentiment)
+    metrics = calculate_metrics(sentiment, feedback_data["sentiment"])
 
     with open('evaluation/evaluation.txt', 'w') as report_file:
         report_file.write(json.dumps(metrics, indent=4))

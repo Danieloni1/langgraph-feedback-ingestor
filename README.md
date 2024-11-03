@@ -68,8 +68,9 @@ The main objective of this project is to build a pipeline that:
 │   ├── render.py
 │   ├── index.html
 │   ├── evaluation
-│   │   ├── evaluation.txt
-│   │   ├── negative_words
+│   │   ├── negative_words.txt
+│   │   ├── positive_words.txt
+|   |   ├── metrics.py
 ```
 
 ## Deliverables
