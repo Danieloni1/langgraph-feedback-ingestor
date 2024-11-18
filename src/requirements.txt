@@ -1,0 +1,10 @@
+pandas
+langchain_openai
+langchain_core
+langgraph
+langchain
+python-dotenv
+argparse
+numpy==1.23.5
+scikit-learn
+flask

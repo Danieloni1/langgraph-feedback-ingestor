@@ -61,6 +61,6 @@ if __name__ == "__main__":
         analyzed_data = process_feedback_data(feedback_data)
         save_to_html(analyzed_data)
         evaluate(analyzed_data)
-        logging.info("🫡 Analysis complete. Report generated: index.html")
+        logging.info("🫡 Analysis complete. Report generated: ingested-data-index.html")
     else:
         logging.error("Failed to load feedback data.")

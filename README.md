@@ -26,9 +26,12 @@ The main objective of this project is to build a pipeline that:
   - `langchain_openai`
   - `langchain_core`
   - `langgraph`
+  - `langchain`
   - `python-dotenv`
   - `argparse` (used for parsing arguments to the CLI invocation)
   - `MermaidDrawMethod` (used to plot the LangGraph graph)
+  - `numpy==1.23.5` (ensure compatibility with langchain)
+  - `sklearn`
 
 ## Installation
 1. Clone the repository:
@@ -66,7 +69,7 @@ The main objective of this project is to build a pipeline that:
 │   ├── graph.py
 │   ├── helpers.py
 │   ├── render.py
-│   ├── index.html
+│   ├── ingested-data-index.html
 │   ├── evaluation
 │   │   ├── negative_words.txt
 │   │   ├── positive_words.txt
@@ -75,5 +78,5 @@ The main objective of this project is to build a pipeline that:
 
 ## Deliverables
 - Python scripts for data processing and analysis.
-- HTML file (`index.html`) containing the analysis results.
+- HTML file (`ingested-data-index.html`) containing the analysis results.
 - A graph image (`graph.png`) representing the workflow of the feedback analysis process.
