@@ -64,14 +64,24 @@
         }
 
         @media (max-width: 600px) {
-            input[type="file"], button {
+            input[type="file"],
+            button {
                 width: 90%;
             }
+        }
+
+        .disabled {
+            background-color: #ccc; /* Grey background */
+            color: #666; /* Darker grey text */
+            cursor: not-allowed; /* Change cursor to indicate non-clickability */
         }
     </style>
     <script>
         function showLoading() {
             document.getElementById('loading').style.display = 'block';
+            const submitButton = document.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.classList.add('disabled');
         }
     </script>
 </head>

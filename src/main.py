@@ -6,7 +6,6 @@ from graph import create_graph
 from helpers import evaluate, load_feedback_data
 from render import save_to_html
 import argparse
-
 from langchain_core.runnables.graph import MermaidDrawMethod
 
 def configure_logging(verbose):
@@ -61,6 +60,6 @@ if __name__ == "__main__":
         analyzed_data = process_feedback_data(feedback_data)
         save_to_html(analyzed_data)
         evaluate(analyzed_data)
-        logging.info("🫡 Analysis complete. Report generated: ingested-data-index.html")
+        logging.info("🫡 Analysis complete")
     else:
         logging.error("Failed to load feedback data.")

@@ -8,11 +8,10 @@ src/evaluation/evaluation*.txt
 src/evaluation/__pycache__/*
 src/evaluation/evaluation-original.txt
 src/customer_feedback*.csv
-!src/customer_feedback_example.csv
+!src/customer_feedback.csv
 
 report.md
 assignment_instructions.md
 src/myenv/*
 .DS_Store
 .venv/*
-src/*.html

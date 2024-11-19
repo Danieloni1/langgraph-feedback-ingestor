@@ -61,6 +61,9 @@ def save_to_html(feedback_data):
             </ul>
         </div>
         """
-    html_content += "</body></html>"
+    html_content += """
+    <button onclick="window.location.href='/'" style="margin: 20px; padding: 10px;">Go to Home</button>
+    </body></html>
+    """
     
     return html_content

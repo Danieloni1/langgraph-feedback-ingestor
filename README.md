@@ -6,34 +6,19 @@ This project implements a data processing pipeline that analyzes customer feedba
 ## Table of Contents
 - [Objective](#objective)
 - [Requirements](#requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [File Structure](#file-structure)
-- [Deliverables](#deliverables)
-- [Evaluation Metrics](#evaluation-metrics)
-- [License](#license)
+- [Installation (for running locally)](#installation-for-running-locally)
+- [Usage (locally)](#usage-locally)
+- [Usage (containerized)](#usage-containerized)
 
 ## Objective
-The main objective of this project is to build a pipeline that:
-1. Ingests customer feedback from a CSV file.
-2. Processes the feedback using an LLM to generate summaries, determine sentiment, and extract features.
-3. Stores the processed data and presents it in an HTML format.
+Build a data processing pipeline that analyzes customer feedback using a Language Model (LLM), evaluates the results, and presents the findings on a simple web page. The project will involve developing a Python script for data processing, crafting effective prompts for LLM integration, implementing a sentiment analysis evaluation, and creating a user-friendly HTML presentation of the results. By leveraging Temporal, we can easily handle retries, state management, and orchestration of tasks, which enhances the overall efficiency and resilience of the application.
 
 ## Requirements
 - Python 3.x
-- Libraries:
-  - `pandas`
-  - `langchain_openai`
-  - `langchain_core`
-  - `langgraph`
-  - `langchain`
-  - `python-dotenv`
-  - `argparse` (used for parsing arguments to the CLI invocation)
-  - `MermaidDrawMethod` (used to plot the LangGraph graph)
-  - `numpy==1.23.5` (ensure compatibility with langchain)
-  - `sklearn`
+- Docker (optional)
+- Docker compose (optional)
 
-## Installation
+## Installation (for running locally)
 1. Clone the repository:
    ```bash
    git clone https://github.com/Danieloni1/langgraph-feedback-ingestor.git
@@ -41,42 +26,38 @@ The main objective of this project is to build a pipeline that:
    ```
 2. Install the required libraries using pip:
    ```bash
-   pip install pandas langchain_openai langchain_core langgraph python-dotenv
+   pip install -r requirements.txt
    ```
 
-## Usage
-1. Prepare your CSV file named `customer_feedback.csv` (under src directory) with the following columns:
+## Usage (locally)
+1. Start the Temporal server:
+   ```bash
+   temporal server start-dev
+   ```
+
+2. Run the worker:
+   ```bash
+   python worker.py
+   ```
+
+3. Run the main application:
+   ```bash
+   python app.py
+   ```
+
+4. Prepare your CSV file with the following columns:
    - `feedback_id` (integer)
    - `customer_name` (string)
    - `feedback_text` (string)
    - `submission_date` (date)
 
-2. Run the main script:
+5. After processing, the results will be disaplyed, a graph image will be saved as `graph.png` and evaluation will be saved to `evaluation/evaluation.txt`.
+
+## Usage (containerized)
+You can also run the application containerized:
+
+1. Build and run the application, simply use docker compose:
    ```bash
-   python main.py --data-path path/to/customer_feedback.csv # -v for verbose logging
+   docker compose up --build
    ```
-
-3. After processing, the results will be saved in `index.html` and a graph image will be saved as `graph.png`.
-
-## File Structure
-```
-.
-├── .gitignore
-├── README.md
-├── src
-│   ├── main.py
-│   ├── agents.py
-│   ├── graph.py
-│   ├── helpers.py
-│   ├── render.py
-│   ├── ingested-data-index.html
-│   ├── evaluation
-│   │   ├── negative_words.txt
-│   │   ├── positive_words.txt
-|   |   ├── metrics.py
-```
-
-## Deliverables
-- Python scripts for data processing and analysis.
-- HTML file (`ingested-data-index.html`) containing the analysis results.
-- A graph image (`graph.png`) representing the workflow of the feedback analysis process.
+   Then visit `localhost:5001` for the app and `localhost:8080` for the Temporal dashboard.

@@ -30,6 +30,9 @@ negative_words = load_words('./evaluation/negative_words.txt')
 positive_words = load_words('./evaluation/positive_words.txt')
 
 def rule_based_sentiment(feedback_text):
+    # Check if feedback_text is a string
+    if not isinstance(feedback_text, str) or feedback_text == "":
+        return "Neutral"  # or handle it as needed
     feedback_text = feedback_text.lower()
     if any(word in feedback_text for word in negative_words):
         return "Negative"
